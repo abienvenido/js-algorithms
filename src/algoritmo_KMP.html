@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos en JS</title>
+</head>
+
+<body>
+
+    <!--  
+    |--------------------------------------------------------------------------------------------------------------
+    | El algoritmo KMP es un algoritmo de reconocimiento de patrones
+    |--------------------------------------------------------------------------------------------------------------
+    -->
+    
+    <!-- Título -->
+    <h1>Algoritmo KMP</h1>
+    <!-- Visual en la web -->
+    <div id="capa"></div>
+
+    <script>
+
+        function calculateLpsTable(subStr) {
+            let i = 1;
+            let j = 0;
+            let lps = new Array(subStr.length).fill(0);
+
+            while(i < subStr.length) {
+                if(subStr[i] === subStr[j]) {
+                    lps[i] = j + 1;
+                    i += 1;
+                    j += 1;
+                } else {
+                    if(j !== 0) {
+                        j = lps[j - 1];
+                    } else {
+                        i += 1;
+                    }
+                }
+            }
+            return lps;
+        }
+
+        function searchSubString(string, subString) {
+            let strLength = string.length;
+            let subStrLength = subString.length;
+            const lps = calculateLpsTable(subString);
+
+            let i = 0;
+            let j = 0;
+
+            while(i < strLength) {
+                if (string[i] === subString[j]) {
+                    i += 1;
+                    j += 1;
+                } else {
+                    if (j !== 0) {
+                        j = lps[j - 1];
+                    } else {
+                        i += 1;
+                    }
+                }
+                if (j === subStrLength) return true;
+            }
+
+            return false;
+        }
+
+    const string = 'helloworld';
+    const subString = 'orl';    
+
+    let result = searchSubString(string, subString);
+
+    // ---------------------------------------------   
+    let capa = document.getElementById('capa');
+    let parrafo = document.createElement('h2'); 
+    if(result){
+        parrafo.innerHTML = 'Existe el string ' + subString +  ' en la palabra:' + `  ${string}`;
+        capa.appendChild(parrafo);
+    }           
+    // ---------------------------------------------   
+
+    console.log(result);
+
+    </script>  
+
+</body>
+
+</html>

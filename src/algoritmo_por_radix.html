@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos en JS</title>
+</head>
+
+<body>
+
+    <!--  
+    |--------------------------------------------------------------------------------------------------------------
+    | La ordenación por radix también se conoce como algoritmo de ordenación de cubos.
+    |--------------------------------------------------------------------------------------------------------------
+    -->
+    
+    <!-- Título -->
+    <h1>Algoritmo de clasificación de burbujas</h1>
+    <!-- Visual en la web -->
+    <div id="capa"></div>
+
+    <script>
+
+        function countDigits(number) {
+            if(number === 0) return 1;
+
+            return Math.floor(Math.log10(Math.abs(number))) + 1;
+        }
+
+        function getDigit(number, index) {
+            const stringNumber = Math.abs(number).toString();
+            const currentIndex = stringNumber.length - 1 - index;
+
+            return stringNumber[currentIndex] ? parseInt(stringNumber[currentIndex]) : 0;
+        }
+
+        function maxDigits(array) {
+            let maxNumber = 0;
+
+            for(let i = 0; i < array.length; i++) {
+                maxNumber = Math.max(maxNumber, countDigits(array[i]));
+            }
+
+            return maxNumber;
+        }
+
+        function radixSort(array) {
+            let maxDigitCount = maxDigits(array);
+
+            for(let i = 0; i < maxDigitCount; i++) {
+                let digitBucket = Array.from({length: 10}, () => []);
+
+                for(let j = 0; j < array.length; j++) {
+                    let lastDigit = getDigit(array[j], i);
+                    digitBucket[lastDigit].push(array[j]);
+                }
+
+                array = [].concat(...digitBucket);
+            }
+
+    return array;
+}
+
+    const arrayN = [
+        [1, 'hello'],
+        [2, 'world'], 
+        [0, 'Prueba']
+    ];
+
+    let result = radixSort(arrayN);
+
+    // ---------------------------------------------   
+    let capa = document.getElementById('capa');
+    let parrafo = document.createElement('h2'); 
+    if(result){
+        parrafo.innerHTML = 'Ordena el array dado:' + `  ${result}`;
+        capa.appendChild(parrafo);
+    }           
+    // ---------------------------------------------   
+
+    console.log(result);
+
+    </script>  
+
+</body>
+
+</html>

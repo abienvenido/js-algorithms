@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos en JS</title>
+</head>
+
+<body>
+
+    <!--  
+    |--------------------------------------------------------------------------------------------------------------
+    | El algoritmo de clasificación de fusión sigue el enfoque de dividir y conquistar.
+    | Es una combinación de dos cosas: fusionar y ordenar.
+    | En este algoritmo, primero dividimos la matriz principal en múltiples matrices ordenadas individualmente.
+    |--------------------------------------------------------------------------------------------------------------
+    -->
+    
+    <!-- Título -->
+    <h1>Algoritmo de clasificación por fusión</h1>
+    <!-- Visual en la web -->
+    <div id="capa"></div>
+
+    <script>
+
+        function mergeSortedArray(array1, array2) {
+            let result = [];
+            let i = 0;
+            let j = 0;
+
+            while(i < array1.length && j < array2.length) {
+                if(array1[i] < array2[j]) {
+                    result.push(array1[i]);
+                    i++;
+                } else {
+                    result.push(array2[j]);
+                    j++;
+                }
+            }
+
+            while (i < array1.length) {
+                result.push(array1[i]);
+                i++;
+            }
+
+            while (j < array2.length) {
+                result.push(array2[j]);
+                j++;
+            }
+
+            return result;
+        }
+
+        function mergeSortedAlgo(array) {
+            if(array.length <= 1) return array;
+
+            let midPoint = Math.floor(array.length / 2);
+            let leftArray = mergeSortedAlgo(array.slice(0, midPoint));
+            let rightArray = mergeSortedAlgo(array.slice(midPoint));
+
+            return mergeSortedArray(leftArray, rightArray);
+        }
+
+    const arrayN = [
+        [1, 'hello'],
+        [2, 'world'], 
+        [0, 'Prueba']
+    ];
+
+    let result = mergeSortedAlgo(arrayN);
+
+    // ---------------------------------------------   
+    let capa = document.getElementById('capa');
+    let parrafo = document.createElement('h2'); 
+    if(result){
+        parrafo.innerHTML = 'Ordena el array dado:' + `  ${result}`;
+        capa.appendChild(parrafo);
+    }           
+    // ---------------------------------------------   
+
+    console.log(result);
+
+    </script>  
+
+</body>
+
+</html>

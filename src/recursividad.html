@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos en JS</title>
+</head>
+
+<body>
+
+    <!--  
+    |--------------------------------------------------------------------------------------------------------------
+    | Una función que se llama a sí misma es recursiva. Piense en ello como una alternativa al bucle. 
+    |--------------------------------------------------------------------------------------------------------------
+    -->
+
+    <!-- Título -->
+    <h1>Recursividad</h1>
+    <!-- Visual en la web -->
+    <div id="capa"></div>
+
+    <script>
+        let count = 1;
+        function recursiveFn() {
+            console.log(`Recursive ${count}`); 
+            // ---------------------------------------------   
+            let capa = document.getElementById('capa');
+            let parrafo = document.createElement('h2');            
+            parrafo.innerHTML = count;
+            capa.appendChild(parrafo);
+            // ---------------------------------------------   
+            if (count === 10) return;
+            count++;
+           
+            recursiveFn();
+        }
+        recursiveFn();
+    </script>  
+
+</body>
+
+</html>

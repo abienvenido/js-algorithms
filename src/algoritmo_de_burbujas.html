@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos en JS</title>
+</head>
+
+<body>
+
+    <!--  
+    |--------------------------------------------------------------------------------------------------------------
+    | Ordenar significa reorganizar los datos en orden ascendente o descendente.
+    | La clasificación de burbujas es uno de los muchos algoritmos de clasificación.
+    | En el algoritmo de clasificación de burbujas, intercambiamos el número más grande al final comparando 
+    | cada número con el número anterior. Aquí hay una representación visual.
+    |--------------------------------------------------------------------------------------------------------------
+    -->
+    
+    <!-- Título -->
+    <h1>Algoritmo de clasificación de burbujas</h1>
+    <!-- Visual en la web -->
+    <div id="capa"></div>
+
+    <script>
+
+        function bubbleSort(array) {
+            let isSwapped;
+
+            for(let i = array.length; i > 0; i--) {
+                isSwapped = false;
+
+                for(let j = 0; j < i - 1; j++) {
+                    if(array[j] > array[j + 1]) {
+                        [array[j], array[j+1]] = [array[j+1], array[j]];
+                        isSwapped = true;
+                    }
+                }
+
+                if(!isSwapped) {
+                    break;
+                }
+            }
+            return array;
+        }
+
+    const arrayN = [
+        [1, 'hello'],
+        [2, 'world'], 
+        [0, 'Prueba']
+    ];
+
+    let result = bubbleSort(arrayN);
+
+    // ---------------------------------------------   
+    let capa = document.getElementById('capa');
+    let parrafo = document.createElement('h2'); 
+    if(result){
+        parrafo.innerHTML = 'Ordena el array dado:' + `  ${result}`;
+        capa.appendChild(parrafo);
+    }           
+    // ---------------------------------------------   
+
+    console.log(result);
+
+    </script>  
+
+</body>
+
+</html>

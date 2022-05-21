@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos en JS</title>
+</head>
+
+<body>
+
+    <!--  
+    |--------------------------------------------------------------------------------------------------------------
+    | El algoritmo de búsqueda lineal es bastante simple.
+    | Digamos que necesita averiguar si existe un número en una matriz dada o no.
+    | Ejecutará un bucle for simple y comprobará cada elemento hasta que encuentre el que está buscando.
+    |--------------------------------------------------------------------------------------------------------------
+    -->
+
+    <!-- Título -->
+    <h1>Busqueda lineal - Find 10 in the given array.</h1>
+    <!-- Visual en la web -->
+    <div id="capa"></div>
+
+    <script>
+
+        const array = [3, 8, 12, 6, 10, 2];
+
+        // Find 10 in the given array.
+        function checkForN(arr, n) {
+            for(let i = 0; i < array.length; i++) {
+                if (n === array[i]) {
+                    // ---------------------------------------------   
+                    let capa = document.getElementById('capa');
+                    let parrafo = document.createElement('h2');            
+                    parrafo.innerHTML = n + ` exists at index ${i}`;
+                    capa.appendChild(parrafo);
+                    // ---------------------------------------------   
+                    return `${true} ${n} exists at index ${i}`;
+                }
+            }
+
+        return `${false} ${n} does not exist in the given array.`;
+        }
+
+        let result = checkForN(array, 10);
+
+        console.log(result);
+    </script>  
+
+</body>
+
+</html>

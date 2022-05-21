@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos en JS</title>
+</head>
+
+<body>
+
+    <!--  
+    |--------------------------------------------------------------------------------------------------------------
+    | En la búsqueda lineal, puede eliminar un elemento a la vez.
+    | Pero con el algoritmo de búsqueda binaria puede eliminar varios elementos a la vez.
+    | Es por eso que la búsqueda binaria es más rápida que la búsqueda lineal.
+    |--------------------------------------------------------------------------------------------------------------
+    -->
+    
+    <!-- Título -->
+    <h1>Búsqueda binaria</h1>
+    <!-- Visual en la web -->
+    <div id="capa"></div>
+
+    <script>
+
+        function binarySearch(array, element) {
+            let firstIndex = 0;
+            let lastIndex = array.length - 1;
+            let middleIndex = Math.floor((firstIndex + lastIndex) / 2);
+
+            while (array[middleIndex] !== element && firstIndex <= lastIndex) {
+                if(array[middleIndex] > element) {
+                        lastIndex = middleIndex - 1;
+                }else {
+                        firstIndex = middleIndex + 1;
+                }
+                middleIndex = Math.floor((firstIndex + lastIndex) / 2);
+            }
+
+            return array[middleIndex] === element ? middleIndex : -1;
+        }
+
+        const array = [2, 3, 6, 8, 10, 12];
+        let result = binarySearch(array, 8); // OutPut -> 3
+        // ---------------------------------------------   
+        let capa = document.getElementById('capa');
+        let parrafo = document.createElement('h2');            
+        parrafo.innerHTML = 'Posición del array' + ` exists at index ${result}`;
+        capa.appendChild(parrafo);
+        // ---------------------------------------------   
+        console.log(result);
+
+    </script>  
+
+</body>
+
+</html>

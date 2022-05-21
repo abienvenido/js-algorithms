@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos en JS</title>
+</head>
+
+<body>
+
+    <!--  
+    |--------------------------------------------------------------------------------------------------------------
+    | La clasificación rápida es uno de los algoritmos de clasificación más rápidos. En clasificación rápida, 
+    | seleccionamos un solo elemento conocido como pivote y moveremos todos los elementos (más pequeños que pivote)
+    | a la izquierda de pivote..
+    |--------------------------------------------------------------------------------------------------------------
+    -->
+    
+    <!-- Título -->
+    <h1>Algoritmo de clasificación rápida</h1>
+    <!-- Visual en la web -->
+    <div id="capa"></div>
+
+    <script>
+
+        function pivotUtility(array, start=0, end=array.length - 1) {
+            let pivotIndex = start;
+            let pivot = array[start];
+
+            for(let i = start + 1; i < array.length; i++) {
+                if(pivot > array[i]) {
+                    pivotIndex++;
+                    [array[pivotIndex], array[i]] = [array[i], array[pivotIndex]];
+                }   
+            }
+
+            [array[pivotIndex], array[start]] = [array[start], array[pivotIndex]];
+            return pivotIndex;
+        }
+
+        function quickSort(array, left=0, right=array.length-1) {
+            if (left < right) {
+                let pivotIndex = pivotUtility(array, left, right);
+                quickSort(array, left, pivotIndex - 1);
+                quickSort(array, pivotIndex + 1, right);
+            }
+
+            return array;
+        }
+
+    const arrayN = [
+        [1, 'hello'],
+        [2, 'world'], 
+        [0, 'Prueba']
+    ];
+
+    let result = quickSort(arrayN);
+
+    // ---------------------------------------------   
+    let capa = document.getElementById('capa');
+    let parrafo = document.createElement('h2'); 
+    if(result){
+        parrafo.innerHTML = 'Ordena el array dado:' + `  ${result}`;
+        capa.appendChild(parrafo);
+    }           
+    // ---------------------------------------------   
+
+    console.log(result);
+
+    </script>  
+
+</body>
+
+</html>

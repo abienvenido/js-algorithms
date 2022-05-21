@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos en JS</title>
+</head>
+
+<body>
+
+    <!--  
+    |--------------------------------------------------------------------------------------------------------------
+    | El algoritmo de búsqueda ingenuo se utiliza para encontrar si una cadena contiene una subcadena determinada.
+    |--------------------------------------------------------------------------------------------------------------
+    -->
+    
+    <!-- Título -->
+    <h1>Búsqueda ingenua</h1>
+    <!-- Visual en la web -->
+    <div id="capa"></div>
+
+    <script>
+
+        function naiveSearch(mainStr, subStr) {
+            if (subStr.length > mainStr.length) return false;
+
+            for(let i = 0; i < mainStr.length; i++) {
+                for(let j = 0; j < subStr.length; j++) {
+                    if(mainStr[i + j] !== subStr[j]) break;
+                    if(j === subStr.length - 1) return true; 
+                }
+            }   
+            return false;
+        }
+
+    const mainStr = 'helloworld';
+    const subStr = 'orl';    
+
+    let result = naiveSearch(mainStr, subStr);
+
+    // ---------------------------------------------   
+    let capa = document.getElementById('capa');
+    let parrafo = document.createElement('h2'); 
+    if(result){
+        parrafo.innerHTML = 'Existe el string ' + subStr +  ' en la palabra:' + `  ${mainStr}`;
+        capa.appendChild(parrafo);
+    }           
+    // ---------------------------------------------   
+
+    console.log(result);
+
+    </script>  
+
+</body>
+
+</html>
